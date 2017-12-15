@@ -1,6 +1,7 @@
 import pandas as pd
 from urllib.request import urlopen
 from urllib.error import HTTPError
+from urllib.parse import urljoin
 from bs4 import BeautifulSoup as bs
 from tabulate import tabulate
 
@@ -17,18 +18,22 @@ def getpage(url):
         return None        
     
     return page
-
-
-page = getpage("https://en.wikipedia.org/wiki/Federal_Communications_Commission")
+    
+baseUrl = "https://en.wikipedia.org/"
+page = getpage("https://en.wikipedia.org/wiki/Burbank,_California")
 html = page.read()
 
 bsObj= bs(html , "lxml")
-links = bsObj.select("a")
+tags = bsObj.select("a")
 
-for link in links:
-    if 'href' in link.attrs:
-        print(link['href'])
-        print("\n")
+for tag in tags:
+    if 'href' in tag.attrs:
+        url = urljoin(baseUrl , tag['href'])
+        print(url)
+        
+        
+        
+        
         
         
     

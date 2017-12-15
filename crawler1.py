@@ -38,7 +38,25 @@ def append_to_file(filename , data):
 def del_file(filename):
     f = open(filename , 'w')
     
+
+def file_to_set(filename):
+    result = {}
+    f = open(filename , 'rt')
+    
+    for line in f:
+        result.add(line.replace('\n' ,'')) #Removing newline from url
+
+    return result
+    
+def set_to_file(result , filename):
+    del_file(filename)
+    for link in set:
+        append_to_file(filename , link)
         
+        
+        
+                 
+           
         
           
         
