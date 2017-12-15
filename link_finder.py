@@ -1,13 +1,8 @@
-import pandas as pd
 from urllib.request import urlopen
 from urllib.error import HTTPError
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup as bs
-from tabulate import tabulate
 
-from time import sleep
-from time import time
-from random import randint
 
 def getpage(url):
     try:
@@ -19,18 +14,22 @@ def getpage(url):
     
     return page
     
-baseUrl = "https://en.wikipedia.org/"
-page = getpage("https://en.wikipedia.org/wiki/Burbank,_California")
-html = page.read()
+def getLinks(bsObj , baseUrl):
+    tags = bsObj.select("a")
+    links = set()
+    for tag in tags:
+        if 'href' in tag.attrs:
+            url = urljoin(baseUrl , tag['href'])
+            #print(url)
+            links.add(url)
 
-bsObj= bs(html , "lxml")
-tags = bsObj.select("a")
+    return links 
+            
+            
+    
 
-for tag in tags:
-    if 'href' in tag.attrs:
-        url = urljoin(baseUrl , tag['href'])
-        print(url)
-        
+#print(links)
+
         
         
         
