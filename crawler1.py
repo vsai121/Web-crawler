@@ -1,13 +1,5 @@
 import os
-import pandas as pd
-from urllib.request import urlopen
-from urllib.error import HTTPError
-from bs4 import BeautifulSoup as bs
-from tabulate import tabulate
 
-from time import sleep
-from time import time
-from random import randint
 
 
 def create_project_directory(directory):
@@ -21,8 +13,8 @@ def write_file(filename , data):
     f.close()
 
 def create_datafiles(directory , url):
-    queue = directory + "/queue" + url +  ".txt"  #List of links waiting to be crawled
-    crawled = directory + "/crawled" + url + ".txt"
+    queue = directory + "/queue" +".txt"  #List of links waiting to be crawled
+    crawled = directory + "/crawled" + ".txt"
     
     if not os.path.isfile(queue):
         write_file(queue , url)
@@ -40,7 +32,7 @@ def del_file(filename):
     
 
 def file_to_set(filename):
-    result = {}
+    result = set()
     f = open(filename , 'rt')
     
     for line in f:
