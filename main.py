@@ -12,16 +12,13 @@ CRAWLED_FILE = PROJECT_NAME + '/crawled.txt'
 queue = Queue()
 spider(PROJECT_NAME, HOMEPAGE, DOMAIN_NAME)
 
-
-# Each queued link is a new job
 def create_jobs():
     for link in file_to_set(QUEUE_FILE):
         queue.put(link)
     queue.join()
     crawl()
 
-
-# Check if there are items in the queue, if so crawl them
+    
 def crawl():
     queued_links = file_to_set(QUEUE_FILE)
     if len(queued_links) > 0:
