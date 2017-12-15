@@ -42,7 +42,7 @@ class spider:
             print(str(len(spider.crawled)) + "links have been crawled")
             
             links = spider.gatherlinks(url , spider.baseUrl)
-            if links== None
+            if links== None:
                 print("No links in current url" + url)
                 
                 
@@ -79,17 +79,17 @@ class spider:
                 if link in spider.crawled:
                     continue
                     
-                if spider.domainName not in url:
+                if spider.domainName not in link:
                     continue    
                     
-            spider.queue.add(link)   
+                spider.queue.add(link)   
             
     def update_files():
-        set_to_file(spider.queue , spider.queue_file)
-        set_to_file(spider.crawled , spider.crawled_file)
+        set_to_file(spider.queue , spider.queueFile)
+        set_to_file(spider.crawled , spider.crawledFile)
                                                                                
                         
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     
-    spider1 = spider('crawlers' , "https://en.wikipedia.org")
+    spider1 = spider('crawlers' , "https://en.wikipedia.org")"""
     
